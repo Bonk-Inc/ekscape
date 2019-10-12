@@ -18,11 +18,9 @@ public class PlayerJump : MonoBehaviour
 
     void Update()
     {
-
         if (!Input.GetKeyDown(KeyCode.Space) || Mathf.Abs(rb.velocity.y) > 0.01f)
             return;
 
         rb.AddForce(Vector2.up * force, ForceMode2D.Impulse);
-        
     }
 }
