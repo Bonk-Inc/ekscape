@@ -7,7 +7,7 @@ public class PlayAudioPlayer : MonoBehaviour
 
     private static PlayAudioPlayer instance;
 
-
+    public static PlayAudioPlayer Insctance => instance;
     private void Awake()
     {
         if(instance != null)
