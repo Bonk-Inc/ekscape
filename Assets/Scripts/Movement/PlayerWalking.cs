@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +13,9 @@ public class PlayerWalking : MonoBehaviour
     [SerializeField]
     private float speed;
 
-    public bool CanWalk { get; set; }
+    public bool CanWalk { get; set; } = true;
+
+    public Action<float> OnMove;
 
     private void Awake()
     {
@@ -21,10 +24,16 @@ public class PlayerWalking : MonoBehaviour
 
     private void FixedUpdate()
     {
-        var input = Input.GetAxis(MovementAxis);
+        if (!CanWalk)
+            return;
 
+        var input = Input.GetAxis(MovementAxis);
+        Debug.Log(input);
         rb.position += Vector2.right * input * speed * Time.fixedDeltaTime;
+
         
+        OnMove?.Invoke(Input.GetAxis(MovementAxis));
+
     }
 
 

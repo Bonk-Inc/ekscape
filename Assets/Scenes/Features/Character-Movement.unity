@@ -432,32 +432,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!1 &513598074 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 721419389803603641, guid: e1ef2541781dedc49acbf7115c6022e2,
-    type: 3}
-  m_PrefabInstance: {fileID: 721419389308388547}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &513598078 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 721419389803603645, guid: e1ef2541781dedc49acbf7115c6022e2,
     type: 3}
   m_PrefabInstance: {fileID: 721419389308388547}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &513598079
+--- !u!114 &513598079 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 513598079, guid: e1ef2541781dedc49acbf7115c6022e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 721419389308388547}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 513598074}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7675ec85c6eedd1498fc674348a440c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHealth: 3
-  maxHealth: 3
 --- !u!1 &645547703
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,8 +605,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
@@ -818,8 +808,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1887071113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -838,8 +826,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
