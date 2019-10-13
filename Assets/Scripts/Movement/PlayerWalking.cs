@@ -28,7 +28,6 @@ public class PlayerWalking : MonoBehaviour
             return;
 
         var input = Input.GetAxis(MovementAxis);
-        Debug.Log(input);
         rb.position += Vector2.right * input * speed * Time.fixedDeltaTime;
 
         
