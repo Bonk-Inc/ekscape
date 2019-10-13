@@ -11,7 +11,7 @@ public class SceneLevelHandler : MonoBehaviour
     [SerializeField]
     private int SceneLevel;
 
-    public string sceneName => GetSceneLevelName(SceneLevel);
+    public string SceneName => GetSceneLevelName(SceneLevel);
 
     public void LoadNextLevel()
     {
@@ -38,6 +38,14 @@ public class SceneLevelHandler : MonoBehaviour
             return;
 
         LoadNextLevel();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneName);
+        }
     }
 
 }
