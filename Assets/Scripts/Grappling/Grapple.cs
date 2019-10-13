@@ -10,7 +10,7 @@ public class Grapple : MonoBehaviour
     private LineRenderer lineRenderer;
 
     [SerializeField]
-    private Transform grabPoint;
+    private Rigidbody2D grabPoint;
     
     [SerializeField]
     private float maxLength = 1;

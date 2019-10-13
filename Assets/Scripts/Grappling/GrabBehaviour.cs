@@ -17,6 +17,11 @@ public class GrabBehaviour : MonoBehaviour
 
                 break;
             case "Pullable":
+                col.GetComponent<IPullable>().Pull();
+                break;
+            case "WallRoof":
+
+                break;
             default:
                 break;
         }
