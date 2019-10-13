@@ -5,8 +5,14 @@ using UnityEngine;
 public class ObjectToggle : Interactable
 {   
 
+    [SerializeField]
+    private bool normal = true;
+
     public override void Execute(bool value = true)
     {
-        gameObject.SetActive(value);
+        if(normal)
+            gameObject.SetActive(value);
+        else
+            gameObject.SetActive(!value);
     }
 }
