@@ -5,7 +5,7 @@ using UnityEngine;
 public class Lever : MonoBehaviour, IPushable
 {
     [SerializeField]
-    private Interactable interactable;
+    private Interactable[] interactables;
 
     [SerializeField]
     private Sprite[] leverState;
@@ -21,7 +21,10 @@ public class Lever : MonoBehaviour, IPushable
     public void Push()
     {
         currentValue = !currentValue;
-        interactable?.Execute(currentValue); 
+        foreach (Interactable interactable in interactables)
+        {
+            interactable?.Execute(currentValue); 
+        }
 
         spriteRenderer.sprite = currentValue ? leverState[1] : leverState[0];
     }
