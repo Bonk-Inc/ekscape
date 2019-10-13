@@ -73,6 +73,7 @@ public class Grapple : MonoBehaviour
     {
         lineRenderer.SetPosition(0, transform.position);
         lineRenderer.SetPosition(1, destination);
+        transform.TransformDirection(destination);
         grabPoint.position = destination;
     }   
     
