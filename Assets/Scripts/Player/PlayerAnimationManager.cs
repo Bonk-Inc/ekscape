@@ -52,10 +52,4 @@ public class PlayerAnimationManager : MonoBehaviour
         animator.SetTrigger(jumpTriggerAnimationKey);
     }
 
-    private void StopJumpAnimation()
-    {
-        animator.SetBool(jumpAnimationKey, false);
-    }
-
-
 }
