@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lever : MonoBehaviour, IPullable
+public class Lever : MonoBehaviour, IPushable
 {
     [SerializeField]
     private Interactable interactable;
@@ -18,7 +18,7 @@ public class Lever : MonoBehaviour, IPullable
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
-    public void Pull()
+    public void Push()
     {
         currentValue = !currentValue;
         interactable?.Execute(currentValue); 

@@ -1,4 +1,4 @@
-﻿public interface IPusable
+﻿public interface IPushable
 {
     void Push();
 }

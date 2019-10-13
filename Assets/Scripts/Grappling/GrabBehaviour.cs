@@ -14,10 +14,7 @@ public class GrabBehaviour : MonoBehaviour
                 Attack(col);
                 break;
             case "Pushable":
-
-                break;
-            case "Pullable":
-                col.GetComponent<IPullable>().Pull();
+                col.GetComponent<IPushable>().Push();
                 break;
             case "WallRoof":
 
