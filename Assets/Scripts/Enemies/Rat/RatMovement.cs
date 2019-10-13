@@ -10,6 +10,9 @@ public class RatMovement : MonoBehaviour {
     [SerializeField]
     private float speed = 1;
 
+    [SerializeField]
+    private GameObject ratImage;
+
     private Rigidbody2D rb;
 
     private float[] targets = new float[2];
@@ -25,9 +28,14 @@ public class RatMovement : MonoBehaviour {
     }
 
     private void Update() {
-        var diff = targets[currentGoal] - rb.transform.position.x;
+        var diff = targets[currentGoal] - transform.position.x;
         var dir = diff / Mathf.Abs(diff);
         rb.transform.Translate(dir * speed * Time.deltaTime, 0, 0);
+
+        var yRot = dir > 0 ? 180 : 0;
+        var ratRot = ratImage.transform.rotation.eulerAngles;
+        ratRot.y = yRot;
+        ratImage.transform.rotation = Quaternion.Euler(ratRot);
 
         if (Mathf.Abs(diff) < 0.05)
             SetNextTarget();

@@ -194,6 +194,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1ef2541781dedc49acbf7115c6022e2, type: 3}
+--- !u!1001 &210586218
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 725366056640965410, guid: 05fd53edb9e42fe4987745f173e5eb1c,
+        type: 3}
+      propertyPath: m_Name
+      value: Florance Ratington (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 725366056640965409, guid: 05fd53edb9e42fe4987745f173e5eb1c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.3214831
+      objectReference: {fileID: 0}
+    - target: {fileID: 725366056640965409, guid: 05fd53edb9e42fe4987745f173e5eb1c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.2287462
+      objectReference: {fileID: 0}
+    - target: {fileID: 725366056640965409, guid: 05fd53edb9e42fe4987745f173e5eb1c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.6001348
+      objectReference: {fileID: 0}
+    - target: {fileID: 725366056640965409, guid: 05fd53edb9e42fe4987745f173e5eb1c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 725366056640965409, guid: 05fd53edb9e42fe4987745f173e5eb1c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 725366056640965409, guid: 05fd53edb9e42fe4987745f173e5eb1c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 725366056640965409, guid: 05fd53edb9e42fe4987745f173e5eb1c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 725366056640965409, guid: 05fd53edb9e42fe4987745f173e5eb1c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 725366056640965409, guid: 05fd53edb9e42fe4987745f173e5eb1c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 725366056640965409, guid: 05fd53edb9e42fe4987745f173e5eb1c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 725366056640965409, guid: 05fd53edb9e42fe4987745f173e5eb1c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 05fd53edb9e42fe4987745f173e5eb1c, type: 3}
 --- !u!1 &438795096
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,7 +471,7 @@ Transform:
   m_LocalScale: {x: 20, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1191511700
 BoxCollider2D:
@@ -450,7 +519,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!50 &1638319221
 Rigidbody2D:
   serializedVersion: 4
@@ -533,7 +602,7 @@ Transform:
   m_LocalScale: {x: 5, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1638319224
 BoxCollider2D:
@@ -575,6 +644,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patrollSize: 7.65
   speed: 1
+  ratImage: {fileID: 0}
 --- !u!114 &1638319226
 MonoBehaviour:
   m_ObjectHideFlags: 0
