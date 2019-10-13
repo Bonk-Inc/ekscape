@@ -16,7 +16,7 @@ public class EnemyAttack : MonoBehaviour
             return;
 
         var other = collision.gameObject;
-        other.GetComponent<PlayerHitHandler>().Hit(collision, gameObject);
+        other.GetComponent<PlayerHitHandler>()?.Hit(collision, gameObject);
     }
 
 }

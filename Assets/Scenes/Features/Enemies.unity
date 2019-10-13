@@ -187,11 +187,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 721419389803603647, guid: e1ef2541781dedc49acbf7115c6022e2,
-        type: 3}
-      propertyPath: m_GravityScale
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1ef2541781dedc49acbf7115c6022e2, type: 3}
 --- !u!1 &110204043
@@ -738,52 +733,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1041673635 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 721419389803603641, guid: e1ef2541781dedc49acbf7115c6022e2,
-    type: 3}
-  m_PrefabInstance: {fileID: 93914213}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1041673636 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1843612178571012597, guid: e1ef2541781dedc49acbf7115c6022e2,
-    type: 3}
-  m_PrefabInstance: {fileID: 93914213}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1041673635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b30f53f9358718428a995d61fcc1492, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1041673642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1041673635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad336b58327b3864dba8f8826e4b9068, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  force: 5
-  movement: {fileID: 1041673636}
---- !u!114 &1041673643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1041673635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7675ec85c6eedd1498fc674348a440c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startHealth: 0
-  maxHealth: 3
 --- !u!1 &1191511697
 GameObject:
   m_ObjectHideFlags: 0
