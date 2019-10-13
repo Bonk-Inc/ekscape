@@ -17,11 +17,14 @@ public class Grapple : MonoBehaviour {
     [SerializeField]
     private float throwTime = 0.5f;
 
+    [SerializeField]
+    private Rigidbody2D playerRigid;
+
     private Vector3 lastHookPoint;
     private Coroutine ChangeLineRoutine;
 
     private void Update() {
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) {
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && playerRigid.velocity == Vector2.zero) {
             SendHook();
         }
     }
@@ -31,7 +34,7 @@ public class Grapple : MonoBehaviour {
         Vector3 goalPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         ChangeLineRoutine = StartCoroutine(ChangeLine(startPoint, goalPoint, throwTime, () => {
             grabPoint.position = transform.position;
-            ChangePositionCount(0);
+            ClearPositionCount();
         }));
     }
 
@@ -40,7 +43,6 @@ public class Grapple : MonoBehaviour {
         float timeDuration = 0;
         ChangePositionCount(2);
 
-        //while(Input.GetMouseButton(0)){
         while (timeDuration <= totalTime) {
             if (!Input.GetMouseButton(0))break;
             timeDuration += Time.deltaTime;
@@ -61,7 +63,8 @@ public class Grapple : MonoBehaviour {
         return endPoint;
     }
 
-    private void SetLine(Vector3 destination) {
+    public void SetLine(Vector3 destination) {
+        if(lineRenderer.positionCount == 0) return;
         lineRenderer.SetPosition(0, transform.position);
         lineRenderer.SetPosition(1, destination);
         grabPoint.position = destination;
@@ -69,6 +72,7 @@ public class Grapple : MonoBehaviour {
 
     private void ChangePositionCount(int lines) {
         lineRenderer.positionCount = lines;
+        grabPoint.gameObject.SetActive(lines > 0);
     }
 
     public void ClearPositionCount() {

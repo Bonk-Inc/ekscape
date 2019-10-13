@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4995940475770076907}
   m_Layer: 0
   m_Name: Door
-  m_TagString: Enemy
+  m_TagString: WallRoof
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -17,6 +17,7 @@ public class GrabBehaviour : MonoBehaviour {
                 col.GetComponent<IPushable>().Push();
                 break;
             case "WallRoof":
+                grapple.StopRoutine();
                 grappleMovement.StartGrappling(gameObject.transform, grapple.ClearPositionCount);
                 break;
             default:
