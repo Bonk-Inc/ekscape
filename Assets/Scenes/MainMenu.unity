@@ -442,6 +442,7 @@ GameObject:
   - component: {fileID: 451244799}
   - component: {fileID: 451244798}
   - component: {fileID: 451244797}
+  - component: {fileID: 451244800}
   m_Layer: 5
   m_Name: Play Button
   m_TagString: Untagged
@@ -511,7 +512,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 451244798}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 451244800}
+        m_MethodName: LoadNextLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &451244798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,6 +560,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 451244795}
   m_CullTransparentMesh: 0
+--- !u!114 &451244800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451244795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 828b6836c4d6c95498835fe0127e964c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneLevel: 0
 --- !u!1 &581406168
 GameObject:
   m_ObjectHideFlags: 0
@@ -2320,7 +2345,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f71926d36ee189445981be1c3795c5cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quitButton: {fileID: 1413880767}
 --- !u!114 &1413880767
 MonoBehaviour:
   m_ObjectHideFlags: 0
