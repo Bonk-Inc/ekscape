@@ -143,7 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 1705923578}
   grabPoint: {fileID: 1749870860}
-  maxLength: 10
+  maxLength: 30
   throwTime: 0.6
   playerRigid: {fileID: 721419389803603647}
 --- !u!1 &1749870856
@@ -481,6 +481,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 513598075}
   playerMovement: {fileID: 1843612178571012597}
+  playerJump: {fileID: 865280479322226005}
 --- !u!95 &513598075
 Animator:
   serializedVersion: 3

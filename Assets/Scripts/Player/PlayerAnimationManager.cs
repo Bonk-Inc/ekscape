@@ -6,6 +6,9 @@ public class PlayerAnimationManager : MonoBehaviour
 {
 
     private const string mvementAnimationKey = "IsWalking";
+    private const string jumpAnimationKey = "IsJumping";
+    private const string jumpTriggerAnimationKey = "Jump";
+    private const string inAirAnimationKey = "InAir";
 
     [SerializeField]
     private Animator animator;
@@ -13,9 +16,18 @@ public class PlayerAnimationManager : MonoBehaviour
     [SerializeField]
     private PlayerWalking playerMovement;
 
+    [SerializeField]
+    private PlayerJump playerJump;
+
     private void Awake()
     {
-         playerMovement.OnMove += HandleMovementAnimation;
+        playerMovement.OnMove += HandleMovementAnimation;
+        playerJump.OnJump += HandleJumpAnimation;
+    }
+
+    private void Update()
+    {
+        animator.SetBool(inAirAnimationKey, playerJump.IsInAir);
     }
 
     private void HandleMovementAnimation(float input)
@@ -34,5 +46,10 @@ public class PlayerAnimationManager : MonoBehaviour
         }
     }
 
+
+    private void HandleJumpAnimation()
+    {
+        animator.SetTrigger(jumpTriggerAnimationKey);
+    }
 
 }
