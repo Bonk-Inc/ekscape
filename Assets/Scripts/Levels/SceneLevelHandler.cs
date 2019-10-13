@@ -7,11 +7,23 @@ public class SceneLevelHandler : MonoBehaviour
 {
 
     private const string SceneLevelPrefix = "Play_Level_";
+    private const string LastLevelSave = "Last Level";
 
     [SerializeField]
     private int SceneLevel;
 
+    [SerializeField]
+    private bool gameOptions = true;
+
     public string SceneName => GetSceneLevelName(SceneLevel);
+
+    private void Awake()
+    {
+        if (gameOptions)
+        {
+            PlayerPrefs.SetInt(LastLevelSave, SceneLevel);
+        }
+    }
 
     public void LoadNextLevel()
     {
@@ -42,7 +54,7 @@ public class SceneLevelHandler : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && gameOptions)
         {
             SceneManager.LoadScene(SceneName);
         }
