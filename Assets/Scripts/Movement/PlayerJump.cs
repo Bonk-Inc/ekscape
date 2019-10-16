@@ -27,7 +27,7 @@ public class PlayerJump : MonoBehaviour
     void Update()
     {
 
-        var isInAir = Mathf.Abs(rb.velocity.y) > 0.01f;
+        var isInAir = Mathf.Abs(rb.velocity.y) > 0;
 
         if (!isInAir && this.isInAir)
         {
