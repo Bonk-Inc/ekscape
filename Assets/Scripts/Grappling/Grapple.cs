@@ -39,6 +39,7 @@ public class Grapple : MonoBehaviour {
     }
 
     private IEnumerator ChangeLine(Vector3 startPoint, Vector3 goalPoint, float totalTime, Action OnFinish = null) {
+        var maxLineLenght = Mathf.Min((goalPoint - startPoint).magnitude, maxLength);
         Vector3 currentEndPoint = Vector3.zero;
         float timeDuration = 0;
         ChangePositionCount(2);
@@ -46,7 +47,7 @@ public class Grapple : MonoBehaviour {
         while (timeDuration <= totalTime) {
             if (!Input.GetMouseButton(0))break;
             timeDuration += Time.deltaTime;
-            float hookLength = maxLength / totalTime * timeDuration;
+            float hookLength = maxLineLenght / totalTime * timeDuration;
 
             currentEndPoint = CalculateEndPoint(startPoint, goalPoint, hookLength);
             SetLine(currentEndPoint);
