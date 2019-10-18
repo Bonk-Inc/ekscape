@@ -14,6 +14,12 @@ public class PlayerJump : MonoBehaviour
     [SerializeField]
     private float force;
 
+    [SerializeField]
+    private float landingWaitTime = 0.05f;
+
+
+    private Coroutine WaitForLandRoutine;
+
     public bool IsInAir => isInAir;
 
     public event Action OnJump;
@@ -34,10 +40,34 @@ public class PlayerJump : MonoBehaviour
             OnLand?.Invoke();
         }
         this.isInAir = isInAir;
-        if (!Input.GetKeyDown(KeyCode.Space) || isInAir)
+        if (!Input.GetKeyDown(KeyCode.Space))
             return;
 
+        if (IsInAir)
+        {
+            if (WaitForLandRoutine != null)
+            {
+                StopCoroutine(WaitForLandRoutine);
+            }
+
+            WaitForLandRoutine = StartCoroutine(JumpOnLand());
+            return;
+        }
+
+        Jump();
+    }
+
+    private void Jump()
+    {
         rb.AddForce(Vector2.up * force, ForceMode2D.Impulse);
         OnJump?.Invoke();
+    }
+
+    private IEnumerator JumpOnLand()
+    {
+        yield return new WaitForSeconds(landingWaitTime);
+        if (isInAir)
+            yield break;
+        Jump();
     }
 }
