@@ -65,9 +65,16 @@ public class PlayerJump : MonoBehaviour
 
     private IEnumerator JumpOnLand()
     {
-        yield return new WaitForSeconds(landingWaitTime);
-        if (isInAir)
-            yield break;
-        Jump();
+        float time = landingWaitTime;
+        while(time > 0)
+        {
+            if (!isInAir) {
+                Jump();
+                yield break;
+            }
+
+            time -= Time.deltaTime;
+            yield return null;
+        }
     }
 }
