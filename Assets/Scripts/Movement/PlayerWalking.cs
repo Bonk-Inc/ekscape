@@ -13,6 +13,9 @@ public class PlayerWalking : MonoBehaviour
     [SerializeField]
     private float speed;
 
+    [SerializeField]
+    private float maxSpeed;
+
     public bool CanWalk { get; set; } = true;
 
     public Action<float> OnMove;
@@ -28,12 +31,19 @@ public class PlayerWalking : MonoBehaviour
             return;
 
         var input = Input.GetAxis(MovementAxis);
-        rb.position += Vector2.right * input * speed * Time.fixedDeltaTime;
+        //rb.position += Vector2.right * input * speed * Time.fixedDeltaTime;
+        rb.AddForce(Move());
+        print(rb.velocity.x);
+        
 
         
         OnMove?.Invoke(Input.GetAxis(MovementAxis));
 
     }
-
+    
+    private Vector2 Move(){
+        var input = Input.GetAxis(MovementAxis);
+        return Mathf.Abs(rb.velocity.x) <= maxSpeed ? Vector2.right * input * (100 * speed) * Time.fixedDeltaTime : Vector2.zero;
+    }
 
 }
