@@ -31,9 +31,7 @@ public class PlayerWalking : MonoBehaviour
             return;
 
         var input = Input.GetAxis(MovementAxis);
-        //rb.position += Vector2.right * input * speed * Time.fixedDeltaTime;
-        rb.AddForce(Move());
-        print(rb.velocity.x);
+        rb.AddForce(GetForce());
         
 
         
@@ -41,7 +39,7 @@ public class PlayerWalking : MonoBehaviour
 
     }
     
-    private Vector2 Move(){
+    private Vector2 GetForce(){
         var input = Input.GetAxis(MovementAxis);
         return Mathf.Abs(rb.velocity.x) <= maxSpeed ? Vector2.right * input * (100 * speed) * Time.fixedDeltaTime : Vector2.zero;
     }
