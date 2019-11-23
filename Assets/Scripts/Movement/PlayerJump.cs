@@ -12,6 +12,12 @@ public class PlayerJump : MonoBehaviour
     private bool isInAir = false;
 
     [SerializeField]
+    private BoxCollider2D boxCol;
+
+    [SerializeField]
+    private LayerMask layer;
+
+    [SerializeField]
     private float force;
 
     [SerializeField]
@@ -32,9 +38,7 @@ public class PlayerJump : MonoBehaviour
 
     void Update()
     {
-
-        print(rb.velocity.y);
-        var isInAir = Mathf.Abs(rb.velocity.y) > 0;
+        var isInAir = !CheckGrounded();
 
         if (!isInAir && this.isInAir)
         {
@@ -80,9 +84,7 @@ public class PlayerJump : MonoBehaviour
     }
 
     private bool CheckGrounded(){
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 0.1f);
-
-        return hit;
-        
+        RaycastHit2D hit = Physics2D.Raycast(boxCol.bounds.center, Vector2.down, boxCol.bounds.extents.y + 0.3f, layer);
+        return hit.collider != null;
     }
 }
