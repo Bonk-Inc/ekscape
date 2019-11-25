@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 113037653}
   - component: {fileID: 113037652}
   - component: {fileID: 113037654}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1563,7 +1563,7 @@ GameObject:
   - component: {fileID: 208141579}
   - component: {fileID: 208141581}
   - component: {fileID: 208141578}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Secret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2896,7 +2896,7 @@ GameObject:
   - component: {fileID: 1335516162}
   - component: {fileID: 1335516161}
   - component: {fileID: 1335516160}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tutorial Secret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4931,7 +4931,7 @@ GameObject:
   - component: {fileID: 1693190816}
   - component: {fileID: 1693190818}
   - component: {fileID: 1693190817}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}

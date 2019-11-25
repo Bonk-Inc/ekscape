@@ -454,6 +454,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09783963d904434eb3803c1cb22ca37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxCol: {fileID: 721419389803603640}
+  layer:
+    serializedVersion: 2
+    m_Bits: 256
   force: 10
   landingWaitTime: 0.05
 --- !u!114 &1843612178571012597

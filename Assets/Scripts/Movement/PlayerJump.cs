@@ -84,7 +84,8 @@ public class PlayerJump : MonoBehaviour
     }
 
     private bool CheckGrounded(){
-        RaycastHit2D hit = Physics2D.Raycast(boxCol.bounds.center, Vector2.down, boxCol.bounds.extents.y + 0.3f, layer);
-        return hit.collider != null;
+        Vector2 checkArea = new Vector2(transform.position.x, transform.position.y - (boxCol.bounds.extents.y + 0.3f));
+        Collider2D checkBox = Physics2D.OverlapBox(checkArea, Vector2.one, boxCol.transform.rotation.y, layer);
+        return checkBox != null;
     }
 }
