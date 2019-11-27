@@ -23,6 +23,8 @@ public class PlayerJump : MonoBehaviour
     [SerializeField]
     private float landingWaitTime = 0.05f;
 
+    [SerializeField]
+    private float sizeCheck = 0.3f;
 
     private Coroutine WaitForLandRoutine;
 
@@ -84,8 +86,10 @@ public class PlayerJump : MonoBehaviour
     }
 
     private bool CheckGrounded(){
-        Vector2 checkArea = new Vector2(transform.position.x, transform.position.y - (boxCol.bounds.extents.y + 0.3f));
-        Collider2D checkBox = Physics2D.OverlapBox(checkArea, Vector2.one, boxCol.transform.rotation.y, layer);
+        Vector2 checkArea = new Vector2(boxCol.bounds.center.x , boxCol.bounds.center.y - boxCol.bounds.extents.y);
+        Vector2 checkSize = new Vector2(boxCol.bounds.extents.x, sizeCheck);
+
+        Collider2D checkBox = Physics2D.OverlapBox(checkArea, checkSize, boxCol.transform.rotation.y, layer);
         return checkBox != null;
     }
 }
