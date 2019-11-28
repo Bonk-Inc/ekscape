@@ -11,20 +11,29 @@ public class PlayerJump : MonoBehaviour
 
     private bool isInAir = false;
 
-    [SerializeField]
+    [SerializeField, Header("Ground Check")]
     private BoxCollider2D boxCol;
 
     [SerializeField]
     private LayerMask layer;
 
     [SerializeField]
+    private float sizeCheck = 0.3f;
+
+
+
+    [SerializeField, Header("Jump Stats")]
     private float force;
 
     [SerializeField]
     private float landingWaitTime = 0.05f;
 
+    [SerializeField, Header("Velocity Scales")]
+    private float lowJumpVelocity;
+    
     [SerializeField]
-    private float sizeCheck = 0.3f;
+    private float fallVelocity;
+    
 
     private Coroutine WaitForLandRoutine;
 
@@ -40,13 +49,13 @@ public class PlayerJump : MonoBehaviour
 
     void Update()
     {
-        var isInAir = !CheckGrounded();
+        CheckInAir();
+        HandleJump();
+        HandleGravity();
+    }
 
-        if (!isInAir && this.isInAir)
-        {
-            OnLand?.Invoke();
-        }
-        this.isInAir = isInAir;
+    private void HandleJump(){
+        
         if (!Input.GetKeyDown(KeyCode.Space))
             return;
 
@@ -61,12 +70,12 @@ public class PlayerJump : MonoBehaviour
             return;
         }
 
-        Jump();
+        ExecuteJump();
     }
 
-    private void Jump()
+    private void ExecuteJump()
     {
-        rb.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+        rb.velocity = new Vector2(rb.velocity.x, force);
         OnJump?.Invoke();
     }
 
@@ -76,7 +85,7 @@ public class PlayerJump : MonoBehaviour
         while(time > 0)
         {
             if (!isInAir) {
-                Jump();
+                ExecuteJump();
                 yield break;
             }
 
@@ -85,11 +94,28 @@ public class PlayerJump : MonoBehaviour
         }
     }
 
+    private void CheckInAir(){
+        var isInAir = !CheckGrounded();
+
+        if (!isInAir && this.isInAir)
+        {
+            OnLand?.Invoke();
+        }
+        this.isInAir = isInAir;
+    }
+    
     private bool CheckGrounded(){
         Vector2 checkArea = new Vector2(boxCol.bounds.center.x , boxCol.bounds.center.y - boxCol.bounds.extents.y);
         Vector2 checkSize = new Vector2(boxCol.bounds.extents.x, sizeCheck);
 
         Collider2D checkBox = Physics2D.OverlapBox(checkArea, checkSize, boxCol.transform.rotation.y, layer);
         return checkBox != null;
+    }
+
+    private void HandleGravity(){
+        if(rb.velocity.y < 0)
+            rb.velocity += Vector2.up * Physics2D.gravity * fallVelocity * Time.deltaTime;
+        else if(rb.velocity.y > 0 && !Input.GetButton(JumpAxis))
+            rb.velocity += Vector2.up * Physics2D.gravity * lowJumpVelocity * Time.deltaTime;
     }
 }
