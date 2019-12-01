@@ -51,7 +51,8 @@ public class PlayerJump : MonoBehaviour
     {
         CheckInAir();
         HandleJump();
-        HandleGravity();
+        //print(rb.velocity.y);
+        //HandleGravity();
     }
 
     private void HandleJump(){
@@ -113,6 +114,7 @@ public class PlayerJump : MonoBehaviour
     }
 
     private void HandleGravity(){
+        
         if(rb.velocity.y < 0)
             rb.velocity += Vector2.up * Physics2D.gravity * fallVelocity * Time.deltaTime;
         else if(rb.velocity.y > 0 && !Input.GetButton(JumpAxis))
