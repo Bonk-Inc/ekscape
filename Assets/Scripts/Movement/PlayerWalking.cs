@@ -32,15 +32,12 @@ public class PlayerWalking : MonoBehaviour
 
         var input = Input.GetAxis(MovementAxis);
         rb.AddForce(GetForce());
-        
-
-        
         OnMove?.Invoke(Input.GetAxis(MovementAxis));
-
     }
     
     private Vector2 GetForce(){
         var input = Input.GetAxisRaw(MovementAxis);
+        print(Vector2.right * input * (100 * speed) * Time.fixedDeltaTime);
         return Mathf.Abs(rb.velocity.x) <= maxSpeed ? Vector2.right * input * (100 * speed) * Time.fixedDeltaTime : Vector2.zero;
     }
 

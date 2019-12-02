@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerJump : MonoBehaviour
 {
     private const string JumpAxis = "Jump";
+    private const float velocityZero = 0.0003f;
     private Rigidbody2D rb;
 
     private bool isInAir = false;
@@ -33,7 +34,9 @@ public class PlayerJump : MonoBehaviour
     
     [SerializeField]
     private float fallVelocity;
-    
+
+    [SerializeField, Header("Coyote Vars")]
+    private float waitForJumpTime = 1;    
 
     private Coroutine WaitForLandRoutine;
 
@@ -41,6 +44,8 @@ public class PlayerJump : MonoBehaviour
 
     public event Action OnJump;
     public event Action OnLand;
+
+    private Coroutine coyoteRoutine;
 
     private void Awake()
     {
@@ -51,16 +56,15 @@ public class PlayerJump : MonoBehaviour
     {
         CheckInAir();
         HandleJump();
-        //print(rb.velocity.y);
-        //HandleGravity();
+        HandleGravity();
     }
 
-    private void HandleJump(){
+    private void HandleJump(bool coyote = false){
         
         if (!Input.GetKeyDown(KeyCode.Space))
             return;
 
-        if (IsInAir)
+        if (IsInAir && !coyote)
         {
             if (WaitForLandRoutine != null)
             {
@@ -78,6 +82,9 @@ public class PlayerJump : MonoBehaviour
     {
         rb.velocity = new Vector2(rb.velocity.x, force);
         OnJump?.Invoke();
+
+        if(coyoteRoutine != null)
+            StopCoroutine(coyoteRoutine);
     }
 
     private IEnumerator JumpOnLand()
@@ -102,9 +109,24 @@ public class PlayerJump : MonoBehaviour
         {
             OnLand?.Invoke();
         }
+        else if(isInAir && !this.isInAir && rb.velocity.y <= velocityZero)
+        {
+            coyoteRoutine = StartCoroutine(CoyoteHandler());
+        }
+
         this.isInAir = isInAir;
     }
-    
+
+    private IEnumerator CoyoteHandler(){
+        float timeLeft = waitForJumpTime;
+        while(timeLeft >= 0){
+            timeLeft -= Time.deltaTime;
+            HandleJump(true);
+
+            yield return null;
+        }
+    }
+
     private bool CheckGrounded(){
         Vector2 checkArea = new Vector2(boxCol.bounds.center.x , boxCol.bounds.center.y - boxCol.bounds.extents.y);
         Vector2 checkSize = new Vector2(boxCol.bounds.extents.x, sizeCheck);
@@ -114,10 +136,12 @@ public class PlayerJump : MonoBehaviour
     }
 
     private void HandleGravity(){
-        
-        if(rb.velocity.y < 0)
-            rb.velocity += Vector2.up * Physics2D.gravity * fallVelocity * Time.deltaTime;
-        else if(rb.velocity.y > 0 && !Input.GetButton(JumpAxis))
+        if(CheckGrounded())
+            return;
+
+        /*if(rb.velocity.y <= velocityZero)
+            rb.velocity += Vector2.up * Physics2D.gravity * fallVelocity * Time.deltaTime;      //TODO fix corner collision, blocks player from moving when on edge
+        else */if(rb.velocity.y > velocityZero && !Input.GetButton(JumpAxis))
             rb.velocity += Vector2.up * Physics2D.gravity * lowJumpVelocity * Time.deltaTime;
     }
 }

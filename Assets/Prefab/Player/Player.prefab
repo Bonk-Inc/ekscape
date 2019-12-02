@@ -458,11 +458,12 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 256
-  sizeCheck: 0.3
+  sizeCheck: 0.35
   force: 15
   landingWaitTime: 0.05
   lowJumpVelocity: 5
-  fallVelocity: 10
+  fallVelocity: 2.5
+  waitForJumpTime: 0.2
 --- !u!114 &1843612178571012597
 MonoBehaviour:
   m_ObjectHideFlags: 0
