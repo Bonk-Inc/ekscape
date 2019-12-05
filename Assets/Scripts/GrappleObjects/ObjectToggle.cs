@@ -10,9 +10,10 @@ public class ObjectToggle : Interactable
 
     public override void Execute(bool value = true)
     {
-        if(normal)
+        gameObject.SetActive(!gameObject.activeSelf);
+        /*if(normal)
             gameObject.SetActive(value);
         else
-            gameObject.SetActive(!value);
+            gameObject.SetActive(!value);*/
     }
 }
