@@ -11,33 +11,70 @@ public class CameraZoomHandler : MonoBehaviour
     [SerializeField]
     private Camera camera;
 
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private float lerpSpeed = 10;
+
+    private Coroutine zoomRoutine;
+
+    public bool IsZoomOut => zoomRoutine != null;
+
+    public void StartZoom()
     {
-        SetCameraPosition(level.bounds.center);
-        float size = 0;
-        if(level.bounds.size.x / level.bounds.size.y < camera.aspect)
+        if (IsZoomOut)
+            return;
+
+        zoomRoutine = StartCoroutine(ZoomOut());
+    }
+
+    public void StopZoom()
+    {
+        if (!IsZoomOut)
+            return;
+
+        StopCoroutine(zoomRoutine);
+        zoomRoutine = null;
+    }
+
+    private IEnumerator ZoomOut()
+    {
+        while (true)
         {
-            size = level.bounds.size.y;
+            float size = GetSize();
+            Vector2 position = GetPosition();
+
+            SetCameraPosition(Vector2.Lerp(camera.transform.position, position, lerpSpeed * Time.deltaTime));
+            camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, size, lerpSpeed * Time.deltaTime);
+
+            yield return null;
         }
-        else
-        {
-            size = level.bounds.size.y / camera.aspect * (level.bounds.size.x / level.bounds.size.y);
-        }
-        camera.orthographicSize = size / 2;
     }
 
     private void SetCameraPosition(Vector2 pos)
     {
-        var camPos = camera.transform.position; 
+        var camPos = camera.transform.position;
         camPos.x = pos.x;
         camPos.y = pos.y;
         camera.transform.position = camPos;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private Vector2 GetPosition()
     {
-        
+        return level.bounds.center;
+    }
+
+    private float GetSize()
+    {
+        float size;
+        if (level.bounds.size.x / level.bounds.size.y < camera.aspect)
+        {
+            size = level.bounds.size.y;
+        }
+        else
+        {
+            float levelAspect = (level.bounds.size.x / level.bounds.size.y);
+            size = level.bounds.size.y / camera.aspect * levelAspect;
+        }
+        return size / 2;
     }
 }
