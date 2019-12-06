@@ -60,4 +60,7 @@ public class SceneLevelHandler : MonoBehaviour
         }
     }
 
+    public void GoToScene(string scene){
+        SceneManager.LoadScene(scene);
+    }
 }
