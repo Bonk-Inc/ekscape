@@ -285,3 +285,5 @@ MonoBehaviour:
   level: {fileID: 0}
   camera: {fileID: 5399811409393788951}
   lerpSpeed: 10
+  margin: 0.2
+  minZoom: 5

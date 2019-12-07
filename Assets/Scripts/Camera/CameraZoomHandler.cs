@@ -14,6 +14,12 @@ public class CameraZoomHandler : MonoBehaviour
     [SerializeField]
     private float lerpSpeed = 10;
 
+    [SerializeField]
+    private float margin;
+
+    [SerializeField]
+    private float minZoom;
+
     private Coroutine zoomRoutine;
 
     public bool IsZoomOut => zoomRoutine != null;
@@ -39,8 +45,10 @@ public class CameraZoomHandler : MonoBehaviour
     {
         while (true)
         {
-            float size = GetSize();
+            float size = GetSize() + margin;
             Vector2 position = GetPosition();
+
+            size = Mathf.Max(minZoom, size);
 
             SetCameraPosition(Vector2.Lerp(camera.transform.position, position, lerpSpeed * Time.deltaTime));
             camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, size, lerpSpeed * Time.deltaTime);
