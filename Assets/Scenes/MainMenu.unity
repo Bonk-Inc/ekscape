@@ -2327,15 +2327,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 753993703}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1840515615}
+        m_MethodName: GoToScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: SampleScene
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1503959063
@@ -2895,6 +2895,7 @@ GameObject:
   - component: {fileID: 1840515613}
   - component: {fileID: 1840515612}
   - component: {fileID: 1840515611}
+  - component: {fileID: 1840515615}
   m_Layer: 5
   m_Name: Main Menu
   m_TagString: Untagged
@@ -2984,6 +2985,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1840515615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840515610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 828b6836c4d6c95498835fe0127e964c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneLevel: 0
+  gameOptions: 1
 --- !u!1 &1939484597
 GameObject:
   m_ObjectHideFlags: 0
