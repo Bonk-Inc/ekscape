@@ -2062,11 +2062,11 @@ TextureImporter:
         serializedVersion: 2
         x: 600
         y: 1700
-        width: 100
+        width: 98
         height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 33, z: 2, w: 32}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -2102,13 +2102,13 @@ TextureImporter:
       name: tile_set_mix_and_jam_42
       rect:
         serializedVersion: 2
-        x: 800
+        x: 801
         y: 1700
-        width: 100
+        width: 99
         height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 2, y: 33, z: 0, w: 32}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -5893,12 +5893,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 600
-        y: 700
-        width: 100
-        height: 100
+        y: 669
+        width: 98
+        height: 99
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 64, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -5934,13 +5934,13 @@ TextureImporter:
       name: tile_set_mix_and_jam_214
       rect:
         serializedVersion: 2
-        x: 800
-        y: 700
+        x: 806
+        y: 669
         width: 100
-        height: 100
+        height: 99
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 64, z: 6, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
