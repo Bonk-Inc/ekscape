@@ -11,7 +11,6 @@ public class PlayerJump : MonoBehaviour
     private Rigidbody2D rb;
 
     private bool isInAir = false;
-    private float xVelocity = 0;
 
     [SerializeField, Header("Debug Options")]
     private bool noCoyote = false;
@@ -89,8 +88,7 @@ public class PlayerJump : MonoBehaviour
 
     private void ExecuteJump()
     {
-        xVelocity = rb.velocity.x;
-        rb.velocity = new Vector2(xVelocity, force);
+        rb.velocity = new Vector2(rb.velocity.x, force);
         OnJump?.Invoke();
 
         if(coyoteRoutine != null)
@@ -117,7 +115,6 @@ public class PlayerJump : MonoBehaviour
 
         if (!isInAir && this.isInAir)
         {
-            rb.velocity = new Vector2(xVelocity, rb.velocity.y);
             OnLand?.Invoke();
         }
         else if(isInAir && !this.isInAir && rb.velocity.y <= velocityZero && !noCoyote)
@@ -148,13 +145,7 @@ public class PlayerJump : MonoBehaviour
 
     private void HandleGravity(){
         if(CheckGrounded())
-            return;
-
-        //TODO fix corner collision, blocks player from moving when on edge
-        /*if(rb.velocity.y <= velocityZero)
-            rb.velocity += Vector2.up * Physics2D.gravity * fallVelocity * Time.deltaTime;      
-        else */
-        
+            return;        
         
         if(rb.velocity.y > velocityZero && !Input.GetButton(JumpAxis))
             rb.velocity += Vector2.up * Physics2D.gravity * lowJumpVelocity * Time.deltaTime;
