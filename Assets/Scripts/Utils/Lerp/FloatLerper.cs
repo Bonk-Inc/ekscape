@@ -19,7 +19,6 @@ public class FloatLerper : Lerper<float>
     {
         while (Math.Abs(CurrentValue - EndValue) > Math.Abs(sizeCheck))
         {
-            Debug.Log(EndValue);
             CurrentValue = Mathf.Lerp(CurrentValue, EndValue, LerpSpeed * Time.deltaTime);
             onUpdate?.Invoke(CurrentValue);
             yield return null;

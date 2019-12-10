@@ -225,6 +225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 5399811409393788951}
   lerpSpeed: 10
+  zoomLerpMargin: 0.005
 --- !u!1 &5399811410887951538
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,10 +35,10 @@ public class ObjectPositionLerper : MonoBehaviour
         while ((transform.position - target.position).magnitude > 0.002f)
         {
             var desiredPosition = target.position;
-            Vector3 newPosition = Vector2.Lerp(transform.position, desiredPosition, lerpSpeed * Time.deltaTime);
+            Vector3 newPosition = Vector2.Lerp(transform.position, desiredPosition, lerpSpeed * Time.fixedDeltaTime);
             newPosition.z = transform.position.z;
             transform.position = newPosition;
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
     }
 

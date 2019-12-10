@@ -6,6 +6,9 @@ public class ZoomedOutState : CameraState
 {
 
     [SerializeField]
+    private LevelBoundsCalculator levelBounds;
+
+    [SerializeField]
     private CameraZoomHandler zoomHandler;
 
     public override CameraStateName Name => CameraStateName.ZoomedOut;
@@ -13,6 +16,13 @@ public class ZoomedOutState : CameraState
     public override void EnterState(CameraStateName oldState)
     {
         base.EnterState(oldState);
+
+        if (levelBounds != null)
+        {
+            zoomHandler.SetBounds(levelBounds.currentLevelBounds);
+            levelBounds.OnBoundsUpdated += zoomHandler.SetBounds;
+        }
+
         zoomHandler.StartZoom();
     }
 
@@ -29,6 +39,12 @@ public class ZoomedOutState : CameraState
     public override void LeaveState(CameraStateName newState)
     {
         base.LeaveState(newState);
+
+        if (levelBounds != null)
+        {
+            levelBounds.OnBoundsUpdated -= zoomHandler.SetBounds;
+        }
+
         zoomHandler.StopZoom();
     }
 }

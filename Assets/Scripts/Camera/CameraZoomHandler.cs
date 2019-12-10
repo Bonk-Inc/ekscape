@@ -6,9 +6,6 @@ public class CameraZoomHandler : MonoBehaviour
 {
 
     [SerializeField]
-    private Collider2D level;
-
-    [SerializeField]
     private Camera camera;
 
     [SerializeField]
@@ -21,8 +18,14 @@ public class CameraZoomHandler : MonoBehaviour
     private float minZoom;
 
     private Coroutine zoomRoutine;
+    private Bounds bounds;
 
     public bool IsZoomOut => zoomRoutine != null;
+
+    public void SetBounds(Bounds newBounds)
+    {
+        bounds = newBounds;
+    }
 
     public void StartZoom()
     {
@@ -68,20 +71,20 @@ public class CameraZoomHandler : MonoBehaviour
 
     private Vector2 GetPosition()
     {
-        return level.bounds.center;
+        return bounds.center;
     }
 
     private float GetSize()
     {
         float size;
-        if (level.bounds.size.x / level.bounds.size.y < camera.aspect)
+        if (bounds.size.x / bounds.size.y < camera.aspect)
         {
-            size = level.bounds.size.y;
+            size = bounds.size.y;
         }
         else
         {
-            float levelAspect = (level.bounds.size.x / level.bounds.size.y);
-            size = level.bounds.size.y / camera.aspect * levelAspect;
+            float levelAspect = (bounds.size.x / bounds.size.y);
+            size = bounds.size.y / camera.aspect * levelAspect;
         }
         return size / 2;
     }
