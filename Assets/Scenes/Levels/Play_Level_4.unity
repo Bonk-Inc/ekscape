@@ -6782,6 +6782,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 221549156}
   m_PrefabAsset: {fileID: 0}
+--- !u!66 &1820160051 stripped
+CompositeCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1541180187761171692, guid: 6681c4c82cfd08744a8d8d0a8c0031cf,
+    type: 3}
+  m_PrefabInstance: {fileID: 667684049}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1868121172
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43484,6 +43490,7 @@ MonoBehaviour:
   colliders:
   - {fileID: 1693190817}
   - {fileID: 423903407}
+  - {fileID: 1820160051}
   renderers: []
 --- !u!1001 &2123538558
 PrefabInstance:
