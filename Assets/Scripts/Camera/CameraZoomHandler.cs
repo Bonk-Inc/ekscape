@@ -18,6 +18,8 @@ public class CameraZoomHandler : MonoBehaviour
     private float minZoom;
 
     private Coroutine zoomRoutine;
+
+    [SerializeField]
     private Bounds bounds;
 
     public bool IsZoomOut => zoomRoutine != null;
