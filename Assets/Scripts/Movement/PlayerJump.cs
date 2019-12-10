@@ -12,6 +12,10 @@ public class PlayerJump : MonoBehaviour
 
     private bool isInAir = false;
 
+    [SerializeField, Header("Debug Options")]
+    private bool noCoyote = false;
+
+
     [SerializeField, Header("Ground Check")]
     private BoxCollider2D boxCol;
 
@@ -29,14 +33,18 @@ public class PlayerJump : MonoBehaviour
     [SerializeField]
     private float landingWaitTime = 0.05f;
 
+
     [SerializeField, Header("Velocity Scales")]
     private float lowJumpVelocity;
     
     [SerializeField]
     private float fallVelocity;
 
+
     [SerializeField, Header("Coyote Vars")]
     private float waitForJumpTime = 1;    
+
+
 
     private Coroutine WaitForLandRoutine;
 
@@ -109,7 +117,7 @@ public class PlayerJump : MonoBehaviour
         {
             OnLand?.Invoke();
         }
-        else if(isInAir && !this.isInAir && rb.velocity.y <= velocityZero)
+        else if(isInAir && !this.isInAir && rb.velocity.y <= velocityZero && !noCoyote)
         {
             coyoteRoutine = StartCoroutine(CoyoteHandler());
         }
@@ -137,11 +145,9 @@ public class PlayerJump : MonoBehaviour
 
     private void HandleGravity(){
         if(CheckGrounded())
-            return;
-
-        /*if(rb.velocity.y <= velocityZero)
-            rb.velocity += Vector2.up * Physics2D.gravity * fallVelocity * Time.deltaTime;      //TODO fix corner collision, blocks player from moving when on edge
-        else */if(rb.velocity.y > velocityZero && !Input.GetButton(JumpAxis))
+            return;        
+        
+        if(rb.velocity.y > velocityZero && !Input.GetButton(JumpAxis))
             rb.velocity += Vector2.up * Physics2D.gravity * lowJumpVelocity * Time.deltaTime;
     }
 }

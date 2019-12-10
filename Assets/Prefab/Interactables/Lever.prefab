@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7391335690173705807}
   - component: {fileID: 7391335690173705793}
   - component: {fileID: 7391335690173705792}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Lever
   m_TagString: Pushable
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.003270626, y: -0.013075769}
