@@ -9,12 +9,12 @@ public class TriggerMagnifier : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Magnifier.Instance.MagnifyFade(magnifiable);
+        Magnifier.Instance.MagnifyFadeIn(magnifiable);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Magnifier.Instance.StopMagnifyAlpha();
+        Magnifier.Instance.MagnifyFadeOut();
     }
 
 

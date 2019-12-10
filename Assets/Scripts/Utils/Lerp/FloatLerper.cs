@@ -13,9 +13,7 @@ public class FloatLerper : Lerper<float>
         this.sizeCheck = sizeCheck;
     }
 
-    public FloatLerper(float startValue, float endValue, float lerpSpeed) : base(startValue, endValue, lerpSpeed)
-    {
-    }
+    public FloatLerper(float startValue, float endValue, float lerpSpeed) : base(startValue, endValue, lerpSpeed) {}
 
     public override IEnumerator LerpValue(Action<float> onUpdate, Action onFinish = null)
     {

@@ -6,24 +6,23 @@ using UnityEngine.UI;
 public class Magnifier : MonoBehaviour
 {
 
-    private static Magnifier instance;
-
     [SerializeField]
     private RawImage imageRenderer;
 
-    public static Magnifier Instance => instance;
+    public static Magnifier Instance { get; private set; } 
 
     private FloatLerper lerper = new FloatLerper(0, 1, 10);
+    private Coroutine fadeRoutine;
 
     private void Awake()
     {
-        if (instance != null)
+        if (Instance != null)
         {
             Destroy(this);
             return;
         }
 
-        instance = this;
+        Instance = this;
 
     }
 
@@ -34,15 +33,15 @@ public class Magnifier : MonoBehaviour
         imageRenderer.color = obj.GetColor();
     }
 
-    public void MagnifyFade(Magnifiable obj)
+    public void MagnifyFadeIn(Magnifiable obj)
     {
         Magnify(obj);
         lerper.StartValue = 0;
         lerper.EndValue = obj.GetColor().a;
+        StopLerpCoroutine();
 
-        StartCoroutine(lerper.LerpValue((value) => {
-            SetImageColorAlpha(value);
-        }));
+        var fadeIn = lerper.LerpValue(SetImageColorAlpha, StopLerpCoroutine);
+        fadeRoutine = StartCoroutine(fadeIn);
     }
 
     public void StopMagnify()
@@ -50,14 +49,14 @@ public class Magnifier : MonoBehaviour
         imageRenderer.enabled = false;
     }
 
-    public void StopMagnifyAlpha()
+    public void MagnifyFadeOut()
     {
         lerper.StartValue = imageRenderer.color.a;
         lerper.EndValue = 0;
+        StopLerpCoroutine();
 
-        StartCoroutine(lerper.LerpValue((value) => {
-            SetImageColorAlpha(value);
-        }));
+        var fadeOut = lerper.LerpValue(SetImageColorAlpha, StopLerpCoroutine);
+        fadeRoutine = StartCoroutine(fadeOut);
 
     }
 
@@ -66,6 +65,15 @@ public class Magnifier : MonoBehaviour
         var color = imageRenderer.color;
         color.a = alpha;
         imageRenderer.color = color;
+    }
+
+    private void StopLerpCoroutine()
+    {
+        if (fadeRoutine == null)
+            return;
+
+        StopCoroutine(fadeRoutine);
+        fadeRoutine = null;
     }
 
 
