@@ -2,8 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Experimental.VFX;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerJump : MonoBehaviour
@@ -28,7 +26,6 @@ public class PlayerJump : MonoBehaviour
     private float sizeCheck = 0.3f;
 
 
-
     [SerializeField, Header("Jump Stats")]
     private float force;
 
@@ -46,19 +43,12 @@ public class PlayerJump : MonoBehaviour
     [SerializeField, Header("Coyote Vars")]
     private float waitForJumpTime = 1;    
 
-    [SerializeField, Header("Effects")]
-    private Transform effectParent;
-    [SerializeField]
-    private Transform effectPosition;
-    [SerializeField]
-    private VisualEffect landEffect;
-
     private Coroutine WaitForLandRoutine;
 
     public bool IsInAir => isInAir;
 
     public event Action OnJump;
-    public event UnityAction OnLand;
+    public event Action OnLand;
 
     private Coroutine coyoteRoutine;
 
@@ -122,8 +112,6 @@ public class PlayerJump : MonoBehaviour
 
         if (!isInAir && this.isInAir)
         {
-            VisualEffect effect = Instantiate(landEffect, effectParent);
-            effect.transform.position = effectPosition.position;
             OnLand?.Invoke();
         }
         else if(isInAir && !this.isInAir && rb.velocity.y <= velocityZero && !noCoyote)
