@@ -4,11 +4,23 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField]
+    private SceneLevelHandler sceneLevelHandler;
+
     private Transform follow;
 
     [SerializeField]
     private float followSpeed;
+
+    private void Awake()
+    {
+        sceneLevelHandler = FindObjectOfType<SceneLevelHandler>();
+        sceneLevelHandler.OnPlayerSetup += SetUpFollow;
+    }
+
+    private void SetUpFollow(Transform target)
+    {
+        this.follow = target;
+    }
 
     void FixedUpdate()
     {

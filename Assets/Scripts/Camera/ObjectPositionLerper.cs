@@ -4,14 +4,25 @@ using UnityEngine;
 
 public class ObjectPositionLerper : MonoBehaviour
 {
+    private SceneLevelHandler sceneLevelHandler;
 
-    [SerializeField]
     private Transform target;
 
     [SerializeField]
     private float lerpSpeed;
 
     private Coroutine moveRoutine = null;
+
+    private void Awake()
+    {
+        sceneLevelHandler = FindObjectOfType<SceneLevelHandler>();
+        sceneLevelHandler.OnPlayerSetup += SetUpTarget;
+    }
+
+    private void SetUpTarget(Transform target)
+    {
+        this.target = target;
+    }
 
     public void MoveToTarget()
     {

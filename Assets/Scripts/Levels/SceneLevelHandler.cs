@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,54 +11,116 @@ public class SceneLevelHandler : MonoBehaviour
     private const string LastLevelSave = "Last Level";
 
     [SerializeField]
-    private int SceneLevel;
+    private string sceneLevel, defaultDoor;
 
     [SerializeField]
     private bool gameOptions = true;
 
-    public string SceneName => GetSceneLevelName(SceneLevel);
+    [SerializeField]
+    private bool SkipPlayerPrefDoor = false;
 
-    private void Awake()
+    [SerializeField]
+    private DestinationInfo playerPreset;
+
+    [SerializeField]
+    private DoorPassage[] doors;
+
+    public event Action<Transform> OnPlayerSetup;
+
+    private DestinationInfo destinationInfo;
+
+    public string SceneName => GetSceneLevelName(sceneLevel);
+
+    private void OnEnable()
     {
+        destinationInfo = LocatePlayer();
+
+        for (int i = 0; i < doors.Length; i++)
+        {
+            doors[i].SceneLevelHandler = this;
+        }
+
+        if (!FindDoor()) FindDoor(defaultDoor);
+
         if (gameOptions)
         {
-            PlayerPrefs.SetInt(LastLevelSave, SceneLevel);
+            PlayerPrefs.SetString(LastLevelSave, sceneLevel);
         }
     }
 
-    public void LoadNextLevel()
+    private DestinationInfo LocatePlayer()
     {
-        if (!NextLevelExists())
-            return;
-
-        SceneManager.LoadScene(GetSceneLevelName(SceneLevel + 1));
+        DestinationInfo player = FindObjectOfType<DestinationInfo>();
+        if (player == null)
+        {
+            player = Instantiate(playerPreset);
+        }
+        OnPlayerSetup(player.transform);
+        return player;
     }
 
-    private bool NextLevelExists()
+    private bool FindDoor()
     {
-        var nextScene = SceneManager.GetSceneByName(GetSceneLevelName(SceneLevel + 1));
+        string destination = destinationInfo.GetDoorDestination(SkipPlayerPrefDoor);
+        
+        return FindDoor(destination);
+    }
+
+    private bool FindDoor(string destination)
+    {
+        bool transported = false;
+        for (int i = 0; i < doors.Length; i++)
+        {
+            if (doors[i].DoorName == destination)
+            {
+                destinationInfo.transform.position = doors[i].transform.position;
+                transported = true;
+            }
+        }
+        return transported;
+    }
+
+    public void LoadNextLevel(string levelDestination, string doorDestination)
+    {
+        if (!NextLevelExists(levelDestination)) 
+            return;
+
+        destinationInfo.SetDestination(doorDestination, gameObject);
+
+        if (IsSameLevel(levelDestination))
+        {
+            FindDoor();
+        }
+        else
+        {
+            SceneManager.LoadScene(GetSceneLevelName(levelDestination));
+        }
+
+    }
+
+    private bool NextLevelExists(string levelDestination)
+    {
+        var nextScene = SceneManager.GetSceneByName(GetSceneLevelName(levelDestination));
         return nextScene != null;
     }
 
-    private string GetSceneLevelName(int level)
+    private bool IsSameLevel(string levelDestination)
+    {
+        return sceneLevel.Equals(levelDestination);
+    }
+
+    private string GetSceneLevelName(string level)
     {
         return SceneLevelPrefix + level;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (!collision.gameObject.CompareTag("Player") || !Input.GetKeyDown(KeyCode.W))
-            return;
-
-        LoadNextLevel();
-    }
+    
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R) && gameOptions)
         {
-            SceneManager.LoadScene(SceneName);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
-
 }
