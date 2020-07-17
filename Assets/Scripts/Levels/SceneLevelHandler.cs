@@ -31,7 +31,7 @@ public class SceneLevelHandler : MonoBehaviour
 
     public string SceneName => GetSceneLevelName(sceneLevel);
 
-    private void OnEnable()
+    private void Start()
     {
         destinationInfo = LocatePlayer();
 
