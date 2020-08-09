@@ -12,7 +12,7 @@ public class BoundList : MonoBehaviour
 
     private void Start()
     {
-        FindObjectOfType<SceneLevelHandler>().OnPlayerSetup += (janneke) => FindPlayerBounds();
+        FindObjectOfType<SceneLevelHandler>().OnPlayerSetup += (transform) => FindPlayerBounds();
 
     }
 
