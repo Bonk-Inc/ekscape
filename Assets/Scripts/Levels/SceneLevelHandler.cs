@@ -55,7 +55,7 @@ public class SceneLevelHandler : MonoBehaviour
         {
             player = Instantiate(playerPreset);
         }
-        OnPlayerSetup(player.transform);
+        OnPlayerSetup?.Invoke(player.transform);
         return player;
     }
 
