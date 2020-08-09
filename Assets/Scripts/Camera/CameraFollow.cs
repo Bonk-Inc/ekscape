@@ -19,7 +19,7 @@ public class CameraFollow : MonoBehaviour
 
     private void SetUpFollow(Transform target)
     {
-        this.follow = target;
+        follow = target;
     }
 
     void FixedUpdate()

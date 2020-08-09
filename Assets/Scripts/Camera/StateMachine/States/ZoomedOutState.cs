@@ -13,14 +13,23 @@ public class ZoomedOutState : CameraState
 
     public override CameraStateName Name => CameraStateName.ZoomedOut;
 
+    public LevelBoundsCalculator LevelBounds
+    {
+        get => levelBounds;
+        set {
+            levelBounds = value;
+            zoomHandler.SetBounds(value.currentLevelBounds);
+        }
+    }
+
     public override void EnterState(CameraStateName oldState)
     {
         base.EnterState(oldState);
 
-        if (levelBounds != null)
+        if (LevelBounds != null)
         {
-            zoomHandler.SetBounds(levelBounds.currentLevelBounds);
-            levelBounds.OnBoundsUpdated += zoomHandler.SetBounds;
+            zoomHandler.SetBounds(LevelBounds.currentLevelBounds);
+            LevelBounds.OnBoundsUpdated += zoomHandler.SetBounds;
         }
 
         zoomHandler.StartZoom();
@@ -40,9 +49,9 @@ public class ZoomedOutState : CameraState
     {
         base.LeaveState(newState);
 
-        if (levelBounds != null)
+        if (LevelBounds != null)
         {
-            levelBounds.OnBoundsUpdated -= zoomHandler.SetBounds;
+            LevelBounds.OnBoundsUpdated -= zoomHandler.SetBounds;
         }
 
         zoomHandler.StopZoom();
