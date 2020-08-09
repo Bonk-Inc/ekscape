@@ -21,8 +21,8 @@ public class BoundList : MonoBehaviour
         LevelBoundsCalculator currentLevelBounds = null;
         for (int i = 0; i < levelBoundsCalculators.Length; i++)
         {
-            if(levelBoundsCalculators[i].isActiveAndEnabled)
-                currentLevelBounds = levelBoundsCalculators[i].IsPlayerInBounds() ? levelBoundsCalculators[i] : currentLevelBounds;
+            if (levelBoundsCalculators[i].isActiveAndEnabled && levelBoundsCalculators[i].IsPlayerInBounds())
+                currentLevelBounds = levelBoundsCalculators[i];
         }
         currentLevelBounds.OnPlayerEntered();
         currentLevelBounds.OnPlayerExited += FindPlayerBounds;
