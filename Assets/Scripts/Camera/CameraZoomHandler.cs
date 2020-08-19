@@ -50,6 +50,7 @@ public class CameraZoomHandler : MonoBehaviour
     {
         while (true)
         {
+            yield return null;
             float size = GetSize() + margin;
             Vector2 position = GetPosition();
 
@@ -58,7 +59,6 @@ public class CameraZoomHandler : MonoBehaviour
             SetCameraPosition(Vector2.Lerp(camera.transform.position, position, lerpSpeed * Time.deltaTime));
             camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, size, lerpSpeed * Time.deltaTime);
 
-            yield return null;
         }
     }
 

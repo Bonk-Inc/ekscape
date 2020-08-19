@@ -13,7 +13,8 @@ public class StartLastLevel : MonoBehaviour
         if (!HasLastLevel())
             return;
 
-        int lastLevel = PlayerPrefs.GetInt(lastLevelSave);
+        string lastLevel = PlayerPrefs.GetString(lastLevelSave);
+        print(lastLevel + " " + PlayerPrefs.GetString(lastLevelSave));
         SceneManager.LoadScene(sceneLevelPrefix + lastLevel);
     }
 

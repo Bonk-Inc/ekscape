@@ -5,10 +5,10 @@ using UnityEngine;
 
 public abstract class Lerper<T>
 {
-    
-    public T StartValue { get; set; }
-    public T EndValue { get; set;  }
-    public float LerpSpeed { get; set; }
+
+    public T StartValue;
+    public T EndValue;
+    public float LerpSpeed;
 
     public T CurrentValue { get; protected set; }
 

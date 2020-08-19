@@ -34,6 +34,7 @@ public class SceneLevelHandler : MonoBehaviour
     private void Start()
     {
         destinationInfo = LocatePlayer();
+        if (destinationInfo == null) return;
 
         for (int i = 0; i < doors.Length; i++)
         {
@@ -51,7 +52,7 @@ public class SceneLevelHandler : MonoBehaviour
     private DestinationInfo LocatePlayer()
     {
         DestinationInfo player = FindObjectOfType<DestinationInfo>();
-        if (player == null)
+        if (player == null && playerPreset != null)
         {
             player = Instantiate(playerPreset);
         }

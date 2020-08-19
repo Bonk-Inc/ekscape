@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class FloatLerper : Lerper<float>
 {
-
+    [SerializeField]
     private float sizeCheck = 0.01f;
 
-    public FloatLerper(float startValue, float endValue, float lerpSpeed, float sizeCheck) : base (startValue, endValue, lerpSpeed)
+    public FloatLerper(float startValue, float endValue, float lerpSpeed, float sizeCheck = 0.01f) : base (startValue, endValue, lerpSpeed)
     {
         this.sizeCheck = sizeCheck;
     }
@@ -17,6 +18,7 @@ public class FloatLerper : Lerper<float>
 
     public override IEnumerator LerpValue(Action<float> onUpdate, Action onFinish = null)
     {
+        CurrentValue = StartValue;
         while (Math.Abs(CurrentValue - EndValue) > Math.Abs(sizeCheck))
         {
             CurrentValue = Mathf.Lerp(CurrentValue, EndValue, LerpSpeed * Time.deltaTime);
